@@ -1,10 +1,12 @@
-const HangmanWord = () => {
-  const word = 'test';
-  const guessedLetters: string[] = [];
+interface Props {
+  guessedLetters: string[];
+  wordToGuess: string;
+}
 
+const HangmanWord = ({ guessedLetters, wordToGuess }: Props) => {
   return (
     <div className="flex gap-[0.25em] text-8xl text-blue-500 font-bold uppercase font-[monospace]">
-      {word.split('').map((letter, i) => (
+      {wordToGuess.split('').map((letter, i) => (
         <span key={i} className="border-b-[0.1em] border-black">
           <span
             className={`${!guessedLetters.includes(letter) && 'invisible'}`}
