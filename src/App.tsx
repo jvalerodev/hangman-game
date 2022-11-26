@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import HangmanDrawing from './components/HangmanDrawing';
 import HangmanWord from './components/HangmanWord';
+import Keyboard from './components/Keyboard';
 import words from './word-list.json';
 
 const App = () => {
@@ -17,6 +18,10 @@ const App = () => {
       <HangmanDrawing />
 
       <HangmanWord />
+
+      <div className="self-stretch">
+        <Keyboard />
+      </div>
     </div>
   );
 };
