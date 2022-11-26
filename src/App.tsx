@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import HangmanDrawing from './components/HangmanDrawing';
+import HangmanWord from './components/HangmanWord';
 import words from './word-list.json';
 
 const App = () => {
@@ -14,6 +15,8 @@ const App = () => {
       <div className="text-[2rem] text-center">Lose Win</div>
 
       <HangmanDrawing />
+
+      <HangmanWord />
     </div>
   );
 };
