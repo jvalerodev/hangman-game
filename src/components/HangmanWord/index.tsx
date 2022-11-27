@@ -1,15 +1,19 @@
 interface Props {
-  guessedLetters: string[];
+  enteredLetters: string[];
   wordToGuess: string;
+  reveal: boolean;
 }
 
-const HangmanWord = ({ guessedLetters, wordToGuess }: Props) => {
+const HangmanWord = ({ enteredLetters, wordToGuess, reveal }: Props) => {
   return (
-    <div className="flex gap-[0.25em] text-8xl text-blue-500 font-bold uppercase font-[monospace]">
+    <div className="flex gap-[0.25em] text-8xl text-green-600 font-bold uppercase font-[monospace]">
       {wordToGuess.split('').map((letter, i) => (
         <span key={i} className="border-b-[0.1em] border-black">
           <span
-            className={`${!guessedLetters.includes(letter) && 'invisible'}`}
+            className={`
+              ${!enteredLetters.includes(letter) && !reveal && 'invisible'}
+              ${!enteredLetters.includes(letter) && reveal && 'text-red-600'}
+            `}
           >
             {letter}
           </span>

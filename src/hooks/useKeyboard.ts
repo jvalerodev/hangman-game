@@ -1,19 +1,31 @@
 import { useState, useEffect, useCallback } from 'react';
 
 const useKeyboard = (wordToGuess: string) => {
-  const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
+  const [enteredLetters, setEnteredLetters] = useState<string[]>([]);
 
-  const incorrectLetters = guessedLetters.filter(
+  const correctLetters = enteredLetters.filter((letter) =>
+    wordToGuess.includes(letter)
+  );
+
+  const incorrectLetters = enteredLetters.filter(
     (letter) => !wordToGuess.includes(letter)
   );
 
+  const isWinner = wordToGuess
+    .split('')
+    .every((letter) => correctLetters.includes(letter));
+
+  const isLoser = incorrectLetters.length >= 6;
+
   const addGuessedLetter = useCallback(
     (letter: string) => {
-      if (guessedLetters.includes(letter)) return;
+      if (enteredLetters.includes(letter) || isWinner || isLoser) {
+        return;
+      }
 
-      setGuessedLetters([...guessedLetters, letter.toLowerCase()]);
+      setEnteredLetters([...enteredLetters, letter.toLowerCase()]);
     },
-    [guessedLetters]
+    [enteredLetters, isWinner, isLoser]
   );
 
   const handler = (e: KeyboardEvent) => {
@@ -29,9 +41,17 @@ const useKeyboard = (wordToGuess: string) => {
     document.addEventListener('keypress', handler);
 
     return () => document.removeEventListener('keypress', handler);
-  }, [guessedLetters]);
+  }, [enteredLetters]);
 
-  return { guessedLetters, incorrectLetters };
+  return {
+    enteredLetters,
+    correctLetters,
+    incorrectLetters,
+    isWinner,
+    isLoser,
+    addGuessedLetter,
+    setEnteredLetters
+  };
 };
 
 export default useKeyboard;

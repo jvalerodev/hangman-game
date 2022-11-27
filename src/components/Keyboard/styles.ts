@@ -19,11 +19,11 @@ export const Button = styled.button`
 
   &:hover:not(:disabled),
   &:focus:not(:disabled) {
-    background-color: hsl(200, 100%, 75%);
+    background-color: rgb(187, 247, 208);
   }
 
   &.active {
-    background-color: hsl(200, 100%, 50%);
+    background-color: rgb(22, 163, 74);
     color: #fff;
   }
 

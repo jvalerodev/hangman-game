@@ -1,13 +1,13 @@
 import BodyParts from './BodyDrawing';
 
 interface Props {
-  numberOfGuesses: number;
+  attempts: number;
 }
 
-const HangmanDrawing = ({ numberOfGuesses }: Props) => {
+const HangmanDrawing = ({ attempts }: Props) => {
   return (
     <div className="relative">
-      {BodyParts.slice(0, numberOfGuesses)}
+      {BodyParts.slice(0, attempts)}
 
       <div className="h-[50px] w-[10px] bg-black absolute top-0 right-0" />
 
