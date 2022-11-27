@@ -6,7 +6,7 @@ interface Props {
 
 const HangmanWord = ({ enteredLetters, wordToGuess, reveal }: Props) => {
   return (
-    <div className="flex gap-[0.25em] text-8xl text-green-600 font-bold uppercase font-[monospace]">
+    <div className="flex gap-[0.25em] text-8xl text-green-600 font-bold uppercase font-[monospace] w-full justify-center px-5">
       {wordToGuess.split('').map((letter, i) => (
         <span key={i} className="border-b-[0.1em] border-black">
           <span
